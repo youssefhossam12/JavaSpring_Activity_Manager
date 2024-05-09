@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/styles/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/styles/core.css}" rel="stylesheet" media="screen"  />
+    <script th:src="@{/scripts/jquery.min.js}"></script>
+    <script th:src="@{/scripts/bootstrap.min.js}"></script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<table class="table table-striped table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Created</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Modify</th>
+
+
+
+    </tr>
+    <tr th:each="participant : ${participants}">
+        <td th:text="${participant.getName()}"></td>
+        <td th:text="${participant.getCreated()}"></td>
+        <td th:text="${participant.getEmail()}"></td>
+        <td th:text="${participant.getPhoneNumber()}"></td>
+        <td style="display: flex; gap: 10px;">
+            <form th:action="@{/participant/delete/{id}(id=${participant.id})}" method="post">
+                <button type="submit" class="btn btn-danger card-link">Delete</button>
+            </form>
+            <form th:action="@{/participant/{id}(id=${participant.id})}">
+                <button type="submit" class="btn btn-primary btn-edit card-link">Update</button>
+            </form>
+        </td>
+
+    </tr>
+</table>
+</body>
+</html>

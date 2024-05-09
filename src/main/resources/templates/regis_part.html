@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Holahop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/styles/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/styles/core.css}" rel="stylesheet" media="screen"  />
+    <script th:src="@{/scripts/jquery.min.js}"></script>
+    <script th:src="@{/scripts/bootstrap.min.js}"></script>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            margin-bottom: 10px;
+        }
+        input{
+            margin-bottom: 3px;
+            padding: 5px;
+
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}">Header</div>
+
+<form method="post" th:object="${participant}" th:action="@{/register}">
+    <b><h3 style="margin-top: 5px">Register for an activity</h3></b>
+    <label style="margin-top: 10px">
+        Name
+        <input style="display: flex" th:field="*{name}" placeholder="Name" type="text">
+    </label>
+    <label>
+        Email
+        <input style="display: flex" th:field="*{email}" placeholder="Valid email" type="email">
+    </label>
+    <label>
+        Phone number
+        <input style="display: flex" th:field="*{phoneNumber}" placeholder="PHONE NUMBER" type="text">
+    </label>
+    <label>
+        Activities
+        <div th:each="activity: ${activities}">
+            <input type="checkbox" th:text="${activity.getName()}">
+            <br> <!-- This creates a line break after each checkbox -->
+        </div>
+    </label>
+
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
