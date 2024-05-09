@@ -41,26 +41,14 @@ public class ParticipantController {
         return "edit_participant";
     }
 
-/*    @PostMapping("/update/{id}")
-    public String updateParticipant(@PathVariable Long id, @Valid @ModelAttribute Participant participant, BindingResult result
-    , Model model){
-        if (result.hasErrors())
-            return "edit_participant";
-        Participant participant1 = participantService.getParticipantById(id);
-        participant1.setName(participant1.getName());
-        participant1.setEmail(participant1.getEmail());
-        participant1.setPhoneNumber(participant1.getPhoneNumber());
-
-        participantService.save(participant1);
-        model.addAttribute("participant", participantService.getParticipants());
-        return "success";
-    }*/
     @PostMapping("/{id}")
-    public String updateParticipant(@PathVariable Long id,String name, String email, String phone,  @ModelAttribute Participant participant) {
-        participant.setName(name);
-        participant.setEmail(email);
-        participant.setPhoneNumber(phone);
-        participantService.save(participant);
+    public String updateParticipant(@PathVariable Long id,  @ModelAttribute Participant participant, Model model) {
+        Participant participant1= participantService.getParticipantById(id);
+        participant1.setName(participant.getName());
+        participant1.setEmail(participant.getEmail());
+        participant1.setPhoneNumber(participant.getPhoneNumber());
+        model.addAttribute("participant", participantService.getParticipants());
+        participantService.save(participant1);
         return "success";
     }
 }

@@ -31,12 +31,7 @@ public class ParticipantService {
                 new IllegalStateException(String.format("no participant found with id: %s", id)));
     }
 
-/*    public List<Participant> getParticipantsByAct(String name){
-        return participantRepository.getByName(name);
-    }*/
- /*   public List<Participant> getNewParticipant(Long id){
-        return participantRepository.partActUpdate(id);
-    }*/
+
 
     public void save(Participant participant) {
 
@@ -78,6 +73,13 @@ public class ParticipantService {
     }
 
 
+
+    /*    public List<Participant> getParticipantsByAct(String name){
+        return participantRepository.getByName(name);
+    }
+    public List<Participant> getNewParticipant(Long id){
+        return participantRepository.partActUpdate(id);
+    }*/
 
    /* public void registerParticipant(Activity activity, Participant participant) {
         activity.getParticipants().add(participant);

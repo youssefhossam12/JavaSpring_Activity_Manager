@@ -14,6 +14,8 @@ import java.util.List;
 
 @Repository
 public interface ParticipantRepository extends JpaRepository<Participant, Long> {
+
+
 /*    @Query(nativeQuery = true, value = "select p.* from participant p" +
             " join part_act pa on p.id = pa.part_id" +
             " join activity a on a.id = pa.act_id" +

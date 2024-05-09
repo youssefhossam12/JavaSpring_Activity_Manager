@@ -41,23 +41,10 @@ public class RegistrationController {
         return "regis_part";
     }
 
-/*    @GetMapping("/register/participant/{id}")
-    public String getRegisForm(Model model, @PathVariable("id") Long id){
-        Participant participant = new Participant();
-        model.addAttribute("activity",activityService.getActivity(id));
-        model.addAttribute("participant", participant);
-        return "regis_part";
-    }*/
 
     @PostMapping("/register")
     public String regPart(Participant participant){
-        /*participant.setId(null);
-        participant.setEmail(participant.getEmail());
-        participant.setPhoneNumber(participant.getPhoneNumber());
-        participant.setName(participant.getName());
-        participant.setActivities(participant.getActivities());*/
         participantService.save(participant);
-       /* participantService.getNewParticipant(participant.getId());*/
         return "/success";
     }
 

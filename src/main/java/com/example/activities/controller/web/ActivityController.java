@@ -33,8 +33,6 @@ public class ActivityController {
     @GetMapping("/list")
     public String getData (Model model){
         model.addAttribute("activities", activityService.getActivities());
-       //model.addAttribute("hosts", hostService.GetHosts());
-        /*model.addAttribute("participants", participantService.getParticipants());*/
         return "activities_list";
 
     }
@@ -42,16 +40,10 @@ public class ActivityController {
     @GetMapping("/list/host")
     public String getHosts (Model model){
         model.addAttribute("hosts", hostService.GetHosts());
-        //model.addAttribute("participants", participantService.getParticipants());
         return "hosts_list";
 
     }
 
-/*    @GetMapping("/participants")
-    public String getPart(Model model){
-        model.addAttribute("participants",participantService.getParticipants(Long id));
-        return "participant_list";
-    }*/
 
     @GetMapping("/participants")
     public String getPart(Model model){
@@ -59,11 +51,6 @@ public class ActivityController {
         return "participant_list";
     }
 
-/*    @GetMapping("/list/{name}")
-    public String showActivity(@PathVariable("name") String name, Model model){
-        model.addAttribute("participants",participantService.getParticipantsByAct(name));
-        return "participant_list";
-    }*/
 
     @GetMapping("/{name}")
     public String showHosts(@PathVariable("name") String name, Model model){
@@ -72,6 +59,11 @@ public class ActivityController {
     }
 
 
+    /*    @GetMapping("/list/{name}")
+    public String showActivity(@PathVariable("name") String name, Model model){
+        model.addAttribute("participants",participantService.getParticipantsByAct(name));
+        return "participant_list";
+    }*/
 
 
 
