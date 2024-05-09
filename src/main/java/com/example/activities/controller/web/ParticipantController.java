@@ -23,15 +23,7 @@ public class ParticipantController {
         this.activityService = activityService;
     }
 
-    @PostMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
-        try {
-            this.participantService.delete(id);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        }
-        return "delete_success";
-    }
+
 
     @GetMapping("/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
@@ -50,5 +42,15 @@ public class ParticipantController {
         model.addAttribute("participant", participantService.getParticipants());
         participantService.save(participant1);
         return "success";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        try {
+            this.participantService.delete(id);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return "delete_success";
     }
 }

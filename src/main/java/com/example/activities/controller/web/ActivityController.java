@@ -46,9 +46,16 @@ public class ActivityController {
 
 
     @GetMapping("/participants")
-    public String getPart(Model model){
+    public String getPart( Model model){
         model.addAttribute("participants",participantService.getParticipants());
+
         return "participant_list";
+    }
+
+    @GetMapping("/participants/{name}")
+    public String getPartAct(@PathVariable("name") String name, Model model){
+        model.addAttribute("activities", activityService.getActivityByName(name));
+        return "part_act";
     }
 
 

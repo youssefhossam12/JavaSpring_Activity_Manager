@@ -18,6 +18,7 @@
         <th>Created</th>
         <th>Email</th>
         <th>Phone</th>
+        <th>Activity</th>
         <th>Modify</th>
 
 
@@ -28,6 +29,11 @@
         <td th:text="${participant.getCreated()}"></td>
         <td th:text="${participant.getEmail()}"></td>
         <td th:text="${participant.getPhoneNumber()}"></td>
+        <td>
+            <a role="button" class="nav-link" th:href="@{/activity/participants/{name}(name=${participant.name})}">
+                Participant's activities
+            </a>
+        </td>
         <td style="display: flex; gap: 10px;">
             <form th:action="@{/participant/delete/{id}(id=${participant.id})}" method="post">
                 <button type="submit" class="btn btn-danger card-link">Delete</button>

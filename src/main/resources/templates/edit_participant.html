@@ -45,15 +45,16 @@
         <input style="display: flex" th:field="*{phoneNumber}" placeholder="PHONE NUMBER" type="text">
     </label>
     <label>
-        Activities
+        <b>Activities</b>
         <div th:each="activity: ${activities}">
             <input type="checkbox" th:text="${activity.getName()}" th:value="${participant.activities}">
-            <br> <!-- This creates a line break after each checkbox -->
+            <br>
         </div>
     </label>
 
 
-    <button type="submit">Confirm</button>
+    <button type="submit" class="btn btn-primary btn-edit card-link">Confirm</button>
+    <a style="margin-top: 5px" href="/activity/participants"><button type="button" class="btn btn-danger card-link">Cancel</button></a>
 </form>
 </body>
 </html>

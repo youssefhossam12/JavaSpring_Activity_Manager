@@ -15,11 +15,13 @@ import java.util.Set;
 @Service
 public class ParticipantService {
     private final ParticipantRepository participantRepository;
+    private final ActivityRepository activityRepository;
 
 
     @Autowired
-    public ParticipantService(ParticipantRepository participantRepository){
+    public ParticipantService(ParticipantRepository participantRepository, ActivityRepository activityRepository){
         this.participantRepository = participantRepository;
+        this.activityRepository = activityRepository;
     }
 
     public List<Participant> getParticipants(){
@@ -37,6 +39,10 @@ public class ParticipantService {
 
             participantRepository.save(participant);
 
+    }
+
+    public Participant savePart(Participant p){
+        return this.participantRepository.save(p);
     }
 
 
@@ -71,6 +77,8 @@ public class ParticipantService {
 
         participantRepository.deleteById(id);
     }
+
+
 
 
 

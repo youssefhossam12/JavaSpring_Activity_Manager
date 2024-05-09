@@ -16,10 +16,10 @@ import java.util.List;
 public interface ParticipantRepository extends JpaRepository<Participant, Long> {
 
 
-/*    @Query(nativeQuery = true, value = "select p.* from participant p" +
-            " join part_act pa on p.id = pa.part_id" +
-            " join activity a on a.id = pa.act_id" +
-            " where a.name like :name")
+/*    @Query(nativeQuery = true, value = "select a.* from activity a" +
+            " join part_act pa on a.id = pa.act_id" +
+            " join participant p on p.id = pa.part_id" +
+            " where p.name like :name")
     List<Participant> getByName(@Param("name") String name);*/
 
 /*    @Query(nativeQuery = true, value = "select pa.part_name from part_act pa" +

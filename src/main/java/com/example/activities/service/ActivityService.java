@@ -30,6 +30,9 @@ public class ActivityService {
         return activityRepository.findById(id);
     }
 
+    public List<Activity> getActivityByName(String name){
+        return activityRepository.getByName(name);
+    }
 
 
 
