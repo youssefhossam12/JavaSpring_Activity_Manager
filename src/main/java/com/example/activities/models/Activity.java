@@ -1,7 +1,9 @@
 package com.example.activities.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,8 +21,9 @@ public class Activity extends AbstractEntity {
     @NotEmpty(message ="please enter a description for the activity" )
     private String description;
 
-    @Column(name = "date", unique = false, nullable = false)
-    @NotEmpty(message ="please enter a date for the activity" )
+    @Column(name = "date", nullable = false)
+    @NotNull(message = "Please enter a date for the activity")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date date;
 
 
@@ -28,11 +31,11 @@ public class Activity extends AbstractEntity {
     @NotEmpty(message ="please enter a location for the activity" )
     private String location;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "host_id")
     private Host host;
 
-    @ManyToMany(mappedBy = "activities", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "activities", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Participant> participantSet;
 
 

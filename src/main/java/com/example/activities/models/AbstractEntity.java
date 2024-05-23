@@ -22,7 +22,7 @@ abstract public class AbstractEntity{
 
     @Id
     @Column(name = "id", unique = true, updatable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY  )
     private Long id;
 
     @Column(name = "name", nullable = false, unique = true)

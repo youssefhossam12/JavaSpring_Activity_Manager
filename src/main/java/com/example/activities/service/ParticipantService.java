@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -32,6 +33,8 @@ public class ParticipantService {
         return participantRepository.findById(id).orElseThrow(()->
                 new IllegalStateException(String.format("no participant found with id: %s", id)));
     }
+
+    public Optional<Participant> restGetById(Long id){return this.participantRepository.findById(id);}
 
 
 
@@ -77,6 +80,7 @@ public class ParticipantService {
 
         participantRepository.deleteById(id);
     }
+
 
 
 

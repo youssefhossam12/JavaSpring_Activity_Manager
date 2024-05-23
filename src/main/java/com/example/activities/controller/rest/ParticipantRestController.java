@@ -28,6 +28,12 @@ public class ParticipantRestController {
         return ResponseEntity.ok(p);
     }
 
+    @GetMapping(value = "{id}",produces = MediaType.APPLICATION_JSON_VALUE )
+    public ResponseEntity<Participant> getById(@PathVariable("id") Long id){
+        Optional<Participant> p = participantService.restGetById(id);
+        return ResponseEntity.of(p);
+    }
+
     @PostMapping(value = "/add",  consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Participant> add(@RequestBody Participant p, @PathVariable(required = false) Long id){
         if (p.getId() != null){
@@ -52,7 +58,7 @@ public class ParticipantRestController {
 
     }
 
-    @DeleteMapping(value = "delete")
+    @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable(value = "id") Long id){
         Participant p =this.participantService.getParticipantById(id);
         this.participantService.delete(id);

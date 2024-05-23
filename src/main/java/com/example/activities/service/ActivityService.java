@@ -1,10 +1,13 @@
 package com.example.activities.service;
 
 import com.example.activities.models.Activity;
+import com.example.activities.models.Participant;
 import com.example.activities.repository.ActivityRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -12,10 +15,12 @@ import java.util.Set;
 @Service
 public class ActivityService {
     private final ActivityRepository activityRepository;
+    private final ParticipantService participantService;
 
     @Autowired
-    public ActivityService (ActivityRepository activityRepository) {
+    public ActivityService (ActivityRepository activityRepository, ParticipantService participantService) {
         this.activityRepository = activityRepository;
+        this.participantService = participantService;
     }
 
     public List<Activity> getActivities() {
@@ -34,9 +39,15 @@ public class ActivityService {
         return activityRepository.getByName(name);
     }
 
+    public Activity saveAct(Activity a){
+        return this.activityRepository.save(a);
+    }
 
 
 
-
+    @Transactional
+    public void restDelete(Long id){
+        activityRepository.deleteById(id);
+    }
 
 }

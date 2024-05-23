@@ -17,4 +17,6 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
             " join participant p on p.id = pa.part_id" +
             " where p.name like :name")
     List<Activity> getByName(@Param("name") String name);
+
+
 }
