@@ -1,5 +1,6 @@
 package com.example.activities.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.validator.constraints.Length;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -35,7 +37,9 @@ public class Participant extends AbstractEntity{
             joinColumns = {@JoinColumn(name = "part_id")},
             inverseJoinColumns = {@JoinColumn(name = "act_id")}
     )
-    private Set<Activity> activities;
+    @JsonBackReference
+        private List<Activity> activities;
+
 /*    @JsonIgnore
     @OneToOne(mappedBy = "participant")
     private Host host ;*/

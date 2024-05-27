@@ -1,6 +1,7 @@
 package com.example.activities.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -36,7 +37,8 @@ public class Activity extends AbstractEntity {
     private Host host;
 
     @ManyToMany(mappedBy = "activities", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Participant> participantSet;
+    @JsonManagedReference
+    private List<Participant> participantSet;
 
 
 }
