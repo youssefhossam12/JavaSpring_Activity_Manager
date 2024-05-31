@@ -1,7 +1,9 @@
 package com.example.activities.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -37,7 +39,7 @@ public class Participant extends AbstractEntity{
             joinColumns = {@JoinColumn(name = "part_id")},
             inverseJoinColumns = {@JoinColumn(name = "act_id")}
     )
-    @JsonBackReference
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
         private List<Activity> activities;
 
 /*    @JsonIgnore
